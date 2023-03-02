@@ -17,6 +17,7 @@
     "title":"Title",
     "firstname":"Firstname",
     "lastname":"Lastname",
+    "fullname":"Name",
     "birthday":"Birthday",
     "formardate":"mm//dd//yy",
     "nation":"Nationality",
