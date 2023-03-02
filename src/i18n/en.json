@@ -47,5 +47,6 @@
     "prev":"PREV",
     "next":"NEXT",
     "manage":"MANAGE",
-    "selectall": "Select All"
+    "selectall": "Select All",
+    "alert.success": "Save Success"
 }

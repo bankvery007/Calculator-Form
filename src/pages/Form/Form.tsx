@@ -50,7 +50,7 @@ function FormItem() {
       fullname: values.firstname + " " + values.lastname,
 
     };
-
+    alert(t("alert.success"));
     setGetLocal([...getlocal, result]);
     arr.push(result);
 
