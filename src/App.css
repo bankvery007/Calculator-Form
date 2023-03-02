@@ -1,38 +1,292 @@
-.App {
+.container-home {
+  display: flex;
+  min-width: 100vw;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to left, #ffa200, #6eda78);
+}
+
+.centered {
+  display: flex;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 250px;
+  height: 100px;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-left: 20px;
+  margin: 10px;
+  background-color: white;
+}
+
+.title {
+  position: absolute;
+  top: 0;
+  margin: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  left: 0;
+}
+.containerpage {
+  width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+  background: linear-gradient(to left, #ffa200, #6eda78);
+  padding: 5%;
+}
+
+.line-middle {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+}
+
+.shape-first {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.shape-card {
+  position: relative;
+  display: flex;
+  background-color: #f1f1f1;
+  height: 100px;
+  border-radius: 7px;
+  margin-left: 5px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.shape-card:hover {
+  background-color: #ffa200;
+}
+
+.shape-card:active {
+  background-color: #6eda78;
+}
+
+.card-beside {
+  position: absolute;
+  display: flex;
+  width: 65px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  background-color: #6eda78;
+  color: #f1f1f1;
+  border-radius: 10px;
+  font-size: 11px;
+  border: 2px solid #6eda78;
+  border-radius: 25px;
+  top: 85px;
+}
+
+.card-center {
+  position: absolute;
+  display: flex;
+  width: 80px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  background-color: #6eda78;
+  color: #f1f1f1;
+  border-radius: 10px;
+  font-size: 11px;
+  border: 2px solid #6eda78;
+  border-radius: 25px;
+  top: 85px;
+}
+
+.shape-card-center {
+  display: flex;
+  background-color: #f1f1f1;
+  height: 100px;
+  margin-left: 5px;
+  border-radius: 7px;
+  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.shape-card-center:hover {
+  background-color: #ffa200;
+}
+
+.shape-card-center:active {
+  background-color: #6eda78;
+}
+
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: 40px solid transparent;
+  border-right: 65px solid #555;
+  border-bottom: 40px solid transparent;
+}
+
+.arrow-top {
+  width: 0;
+  height: 0;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-bottom: 65px solid #555;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-top: 65px solid #555;
+}
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 40px solid transparent;
+  border-left: 65px solid #555;
+  border-bottom: 40px solid transparent;
+}
+
+.shape-second-end {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 150px;
+  justify-content: center;
+  align-items: center;
+}
+
+.shape-second-start {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+.box1 {
+  height: 80px;
+  width: 80px;
+  background-color: #555;
+}
+
+.box2 {
+  height: 80px;
+  width: 80px;
+  background-color: #555;
+  border-radius: 50%;
+}
+
+.box3 {
+  height: 80px;
+  width: 120px;
+  background-color: #555;
+  border-radius: 50%;
+}
+
+.box4 {
+  border-bottom: 80px solid #555;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  height: 0;
+  width: 140px;
+}
+
+.box5 {
+  height: 80px;
+  width: 140px;
+  background-color: #555;
+}
+
+.box6 {
+  width: 140px;
+  height: 80px;
+  transform: skew(20deg);
+  background: #555;
+}
+
+.container-form {
+  display: flex;
+  box-sizing: content-box;
+  border: 2px solid rgb(82, 80, 80);
+  border-radius: 8px;
+  justify-content: center;
+  padding: 10px;
+  margin: auto;
+
+  width: 60%;
+}
+
+.inputcitizen {
+  font-family: monospace;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.border-idcard {
   display: flex;
-  flex-direction: column;
+  font-size: 20px;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.button-i18n {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button-back {
+  position: absolute;
+  top: 5vh;
+  right: 0;
+  margin: 30px;
+}
+
+.container-cal {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(to left, #ffa200, #6eda78);
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  height: 600px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.output-cal {
+  background-color: #ffffff;
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  color: #6eda78;
+  text-align: center;
+  border: 1px solid #c1c8c0;
+  border-radius: 10px;
+}
+
+.button-number {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  background-color: #ffffff;
+  font-size: 30px;
+  color: #6eda78;
+  justify-content: center;
+  align-items: center;
 }
