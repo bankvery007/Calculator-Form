@@ -1,18 +1,23 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {
-  createContext,
   Key,
   useContext,
   useEffect,
   useState,
-  useTransition,
 } from "react";
-import { Button, Checkbox, Form, FormInstance, Radio, Space, Table, Tag } from "antd";
-import type { ColumnsType, TablePaginationConfig } from "antd/es/table";
+import {
+  Button,
+  Checkbox,
+  FormInstance,
+  Space,
+  Table,
+} from "antd";
+import type { ColumnsType } from "antd/es/table";
 import { Context } from "../pages/Form/Form";
 import type { PaginationProps } from "antd";
 import { useTranslation } from "react-i18next";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
-import FormItem from "./FormItem";
+
 interface DataType {
   id: number;
   title: string;
@@ -30,14 +35,18 @@ interface DataType {
   mobile: string;
 }
 
-function TableForm() {
-  
+interface Iprops {
+  form: FormInstance;
+
+}
+
+function TableForm(props:Iprops) {
   const getData = useContext(Context);
   const { t } = useTranslation("");
   const [check, setCheck] = useState(false);
   const [data, setData] = React.useState<DataType[]>([] || undefined);
-  const [form] = Form.useForm();
   const [recordsId, setRecordsId] = useState<React.Key[]>([]);
+
   const handleDelete = (key: number) => {
     const objWithIdIndex = data.findIndex((item) => item.id === key);
     if (objWithIdIndex > -1) {
@@ -47,8 +56,6 @@ function TableForm() {
     }
   };
 
-  
-
   const handleDeleteSelect = () => {
     const next = data.filter((item) => {
       return !recordsId.some((recordId) => recordId === item.id);
@@ -57,11 +64,9 @@ function TableForm() {
     localStorage.setItem("form", JSON.stringify(next));
   };
 
-  
-const onChange = (e: CheckboxChangeEvent) => {
+  const onChange = (e: CheckboxChangeEvent) => {
     setCheck(e.target.checked);
-    
-};
+  };
   const columns: ColumnsType<DataType> = [
     {
       title: `${t("fullname")}`,
@@ -85,15 +90,22 @@ const onChange = (e: CheckboxChangeEvent) => {
     },
     {
       title: `${t("manage")}`,
-      render: (_, record) => (
+      render: (_, record) => {
+        return(
         <Space size="middle">
-          <a onClick={() => {
-            form.setFieldsValue(record);
-            form.setFieldsValue({ id: record.id });
-          }}>{t("edit")} </a> 
+          <a
+            onClick={() => {
+              props.form.setFieldsValue({
+                ...record,
+              });
+              props.form.setFieldsValue({ id: record.id });
+            }}
+          >
+            {t("edit")}{" "}
+          </a>
           <a onClick={() => handleDelete(record.id)}>{t("delete")}</a>
         </Space>
-      ),
+      )},
     },
   ];
 
@@ -123,14 +135,17 @@ const onChange = (e: CheckboxChangeEvent) => {
     }
   }, [check]);
   return (
-
     <div>
-
-      <Checkbox style={{marginBottom: "10px"}} onChange={onChange}>{t("selectall")}</Checkbox>
-
+      <Checkbox style={{ marginBottom: "10px" }} onChange={onChange}>
+        {t("selectall")}
+      </Checkbox>
 
       <Button
-        style={{ backgroundColor: "white", color: "black",marginBottom: "10px"}}
+        style={{
+          backgroundColor: "white",
+          color: "black",
+          marginBottom: "10px",
+        }}
         onClick={() => {
           handleDeleteSelect();
         }}

@@ -1,15 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { Col, DatePicker, Radio, Row } from "antd";
-import { Button, Form, Input, InputNumber, Select } from "antd";
+import { Button, Form, Input, Select } from "antd";
 import ReactCountryFlag from "react-country-flag";
-import React, { useContext } from "react";
+import React from "react";
 import FormCitizen from "./FormCitizen";
 
 interface props {
   form: any;
 }
 function FormItem({ form }: props) {
-  const { t, i18n } = useTranslation("");
+  const { t } = useTranslation("");
   const style: React.CSSProperties = { padding: "0 0 0 10px" };
   const customFormat = "DD/MM/YY";
 

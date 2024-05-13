@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Input, Row, Col } from "antd";
 
 const InputPersonal: FC<{
@@ -16,10 +16,28 @@ const InputPersonal: FC<{
     }
   };
 
+  useEffect(() => {
+    if (value) {
+      const chunkLengths = [1, 4, 5, 2, 1];
+
+      const valueStr = value.toString();
+
+      const chunks = [];
+      let currentIndex = 0;
+      for (let length of chunkLengths) {
+        chunks.push(valueStr.slice(currentIndex, currentIndex + length));
+        currentIndex += length;
+      }
+
+      setInputValue(chunks);
+    }
+  }, [value]);
+
   return (
     <Row>
       <Col span={2}>
-        <Input className="inputcitizen"
+        <Input
+          className="inputcitizen"
           value={inputValue[0]}
           maxLength={1}
           minLength={1}
@@ -32,7 +50,8 @@ const InputPersonal: FC<{
         <div className="border-idcard">-</div>
       </Col>
       <Col span={4}>
-        <Input className="inputcitizen"
+        <Input
+          className="inputcitizen"
           maxLength={4}
           minLength={4}
           value={inputValue[1]}
@@ -45,7 +64,8 @@ const InputPersonal: FC<{
         <div className="border-idcard">-</div>
       </Col>
       <Col span={4}>
-        <Input className="inputcitizen"
+        <Input
+          className="inputcitizen"
           maxLength={5}
           minLength={5}
           value={inputValue[2]}
@@ -59,7 +79,8 @@ const InputPersonal: FC<{
         <div className="border-idcard">-</div>
       </Col>
       <Col span={3}>
-        <Input className="inputcitizen"
+        <Input
+          className="inputcitizen"
           maxLength={2}
           minLength={2}
           value={inputValue[3]}
@@ -74,7 +95,8 @@ const InputPersonal: FC<{
       </Col>
 
       <Col span={2}>
-        <Input className="inputcitizen"
+        <Input
+          className="inputcitizen"
           minLength={1}
           maxLength={1}
           value={inputValue[4]}
@@ -83,7 +105,7 @@ const InputPersonal: FC<{
           }}
         />
       </Col>
-      </Row>
+    </Row>
   );
 };
 export default InputPersonal;

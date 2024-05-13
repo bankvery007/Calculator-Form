@@ -45,7 +45,7 @@ function FormItem() {
     }
     const result = {
       ...values,
-      birthday: dayjs(values.birthday).format("DD/MM/YYYY"),
+      birthday: values.birthday,
       mobile: values.mobilecode + values.mobilephone,
       fullname: values.firstname + " " + values.lastname,
 
@@ -73,7 +73,7 @@ function FormItem() {
         </div>
         <div style={{marginTop:"2%"}}>
           
-        <TablePage></TablePage>
+        <TablePage form={form}></TablePage>
         </div>      
         </div>
     </Context.Provider>
