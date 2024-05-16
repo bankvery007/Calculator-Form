@@ -7,23 +7,25 @@ import FormCitizen from "./FormCitizen";
 
 interface props {
   form: any;
+  mode: "create" | "edit";
+  setMode: React.Dispatch<React.SetStateAction<"create" | "edit">>;
 }
-function FormItem({ form }: props) {
+function FormItem({ form,mode,setMode }: props) {
   const { t } = useTranslation("");
   const style: React.CSSProperties = { padding: "0 0 0 10px" };
-  const customFormat = "DD/MM/YY";
 
   const optionTitle = [
-    { label: `${t("mr")}`, value: "Mr." },
-    { label: `${t("mrs")}`, value: "Mrs." },
-    { label: `${t("ms")}`, value: "Ms." },
+    { label: `${t("mr")}`, value: "mr" },
+    { label: `${t("mrs")}`, value: "mrs" },
+    { label: `${t("ms")}`, value: "ms" },
   ];
 
   const optionNation = [
-    { label: `${t("th")}`, value: "Thai" },
-    { label: `${t("french")}`, value: "French" },
-    { label: `${t("american")}`, value: "American" },
+    { label: `${t("th")}`, value: "th" },
+    { label: `${t("french")}`, value: "french" },
+    { label: `${t("american")}`, value: "american" },
   ];
+
 
   const optionCountry = [
     { value: "+66", label: [<ReactCountryFlag countryCode="TH" svg />, "+66"] },
@@ -33,7 +35,9 @@ function FormItem({ form }: props) {
 
   const onReset = () => {
     form.resetFields();
+    setMode("create")
   };
+
 
   return (
     <>
@@ -78,7 +82,6 @@ function FormItem({ form }: props) {
           >
             <DatePicker
               placeholder={`${t("formardate")}`}
-              format={customFormat}
             />
           </Form.Item>
         </Col>
@@ -109,9 +112,9 @@ function FormItem({ form }: props) {
           rules={[{ required: true, message: `${t("plsgender")}` }]}
         >
           <Radio.Group>
-            <Radio value="Male"> {t("male")}</Radio>
-            <Radio value="Female"> {t("female")}</Radio>
-            <Radio value="Unsex"> {t("unsex")}</Radio>
+            <Radio value="male"> {t("male")}</Radio>
+            <Radio value="female"> {t("female")}</Radio>
+            <Radio value="unsex"> {t("unsex")}</Radio>
           </Radio.Group>
         </Form.Item>
       </Row>

@@ -1,22 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {
-  Key,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import {
-  Button,
-  Checkbox,
-  FormInstance,
-  Space,
-  Table,
-} from "antd";
+import React, { Key, useContext, useEffect, useState } from "react";
+import { Button, Checkbox, FormInstance, Space, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { Context } from "../pages/Form/Form";
 import type { PaginationProps } from "antd";
 import { useTranslation } from "react-i18next";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
+import moment from "moment";
 
 interface DataType {
   id: number;
@@ -37,10 +27,11 @@ interface DataType {
 
 interface Iprops {
   form: FormInstance;
-
+  setMode: React.Dispatch<React.SetStateAction<"create" | "edit">>;
+  setId: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
-function TableForm(props:Iprops) {
+function TableForm(props: Iprops) {
   const getData = useContext(Context);
   const { t } = useTranslation("");
   const [check, setCheck] = useState(false);
@@ -54,6 +45,7 @@ function TableForm(props:Iprops) {
       setData([...data]);
       localStorage.setItem("form", JSON.stringify(data));
     }
+    alert("Delete Success");
   };
 
   const handleDeleteSelect = () => {
@@ -76,6 +68,9 @@ function TableForm(props:Iprops) {
     {
       title: `${t("gender")}`,
       dataIndex: "gender",
+      render: (data) => {
+        return t(data);
+      },
       sorter: (a, b) => a.gender.localeCompare(b.gender),
     },
     {
@@ -86,26 +81,32 @@ function TableForm(props:Iprops) {
     {
       title: `${t("nation")}`,
       dataIndex: "nation",
+      render: (data) => {
+        return t(data);
+      },
       sorter: (a, b) => a.nation.localeCompare(b.nation),
     },
     {
       title: `${t("manage")}`,
       render: (_, record) => {
-        return(
-        <Space size="middle">
-          <a
-            onClick={() => {
-              props.form.setFieldsValue({
-                ...record,
-              });
-              props.form.setFieldsValue({ id: record.id });
-            }}
-          >
-            {t("edit")}{" "}
-          </a>
-          <a onClick={() => handleDelete(record.id)}>{t("delete")}</a>
-        </Space>
-      )},
+        return (
+          <Space size="middle">
+            <a
+              onClick={() => {
+                props.form.setFieldsValue({
+                  ...record,
+                  birthday: moment(record.birthday),
+                });
+                props.setId(record.id);
+                props.setMode("edit");
+              }}
+            >
+              {t("edit")}{" "}
+            </a>
+            <a onClick={() => handleDelete(record.id)}>{t("delete")}</a>
+          </Space>
+        );
+      },
     },
   ];
 
